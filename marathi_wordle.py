@@ -315,7 +315,7 @@ def todos():
     st.markdown("- ~~Counter changes when radio buttons clicked - avoid that~~")
 
 def blacktext(text):
-    mtext = "<font color=‘black’>%s</font>" % text
+    mtext = "<font color='white'>%s</font>" % text
     st.markdown(mtext,unsafe_allow_html=True )
 
 def colortext(text,color):
@@ -374,13 +374,13 @@ def details():
     # blacktext("Normally it should be possible to get to the answer in 4 to 6 steps.")
 
 def reveal():
-    t2put = colortext('%s' % st.session_state['secret'],'blue')
+    t2put = colortext('%s' % st.session_state['secret'],'white')
     st.components.v1.html(t2put,width=50,height=50)
     #blacktext('`%s`' % st.session_state['secret'])
     #st.markdown('`%s`' % st.session_state['secret'])
 
 def newplay():
-    st.markdown("placeholder.\nReload for now.")
+    st.markdown("Not yet implemented.\nReload for now.")
     # st.markdown("Another play")
     # del st.session_state['secret']
     # placeholder0.empty()
