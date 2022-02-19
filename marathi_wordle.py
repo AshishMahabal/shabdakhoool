@@ -53,6 +53,7 @@ def def_value():
     return uuid.uuid4().hex
 
 # A few Globals
+articleurl = "https://ashishmahabal.github.io/%E0%A4%B6%E0%A4%AC%E0%A5%8D%E0%A4%A6%E0%A4%96%E0%A5%82%E0%A5%81%E0%A4%B3/"
 wlen = 3 # That is the length we currently use
 
 # Used for quick tests
@@ -81,7 +82,11 @@ for i in range(len(mmdigits)):
 
 ### Current marking symbols. Later ones overwrite identical ones from before
 ### 🟨 does not seem to work on some devices
-imunicode = {'R':'🟥','R':'❌','G':'🟩','G':'✅','B':'🟦','B':'🔵','Y':'🟨'}
+### 🟨 and 🔵 do not show on Drupal sites. Replacing
+imunicode = {'R':'🟥','R':'❌',
+            'G':'🟩','G':'✅',
+            'B':'🟦','B':'🔵', 'B':'☂️',
+            'Y':'🟨','Y':'↔️'}
 
 # The following function is from a gist by Gareth Rees on stackoverflow
 # https://stackoverflow.com/questions/6805311/combining-devanagari-characters
@@ -329,7 +334,11 @@ def colortext(text,color):
     st.markdown(mtext,unsafe_allow_html=True )
 
 def details():
-    whitetext("जवळजवळ 4000 शब्दांच्या यादीतून एक शब्द विनाक्रम निवडला जातो. त्याचा घाट (स्वराकार आणि\
+    whitetext("लपवलेला मराठी शब्द शोधण्याचा हा खेळ आहे.")
+    whitetext("गुप्तशब्द शोधण्यासाठी तुम्ही मधल्या पट्टीत एक तीन अक्षरी शब्द टाईप करायचा.\
+         टॅब किंवा एंटर दाबल्यावर त्या शब्दात जर अयोग्य अक्षरं नसतील तर तुम्हाला किती गुण मिळाले\
+         हे सांगितलं जातं.")
+    whitetext("जवळजवळ ३७०० शब्दांच्या यादीतून एक शब्द विनाक्रम निवडला जातो. त्याचा घाट (स्वराकार आणि\
         व्यंजनसंख्या) सांगितली जाते.")
     whitetext("उदाहरणार्थ: 'बछडा'चा स्वराकार अअआ आणि व्यंजनसंख्या १११.")
     whitetext("'अप्सरा'चे अअआ आणि ०२१.")
@@ -337,6 +346,7 @@ def details():
     whitetext("ष्ट्य,त्त्व वगैरेंचा व्यंजनांक ३ आहे.")
     whitetext("शब्द शोधतांना प्रयत्नशब्द कोणत्याही घाटाचे चालतात. अनेकदा मुद्दाम जोडाक्षरे वापरल्याने फायदा होतो (प्र, त्र वगैरे).")
     whitetext("4-6 प्रयत्नांत उत्तर मिळू शकतं.")
+    whitetext("गुण खालीलप्रमाणे दिले जातात:")
     whitetext("%s: अक्षर अचूक आहे (जागा, स्वर, आणि व्यंजन)." % imunicode['G'])
     whitetext("%s: अक्षरातील निदान एक व्यंजन याच जागी योग्य आहे (सगळी व्यंजने बरोबर असल्यास फरक अनुस्वाराचा किंवा स्वराचा असू शकतो).\
          उदाहरणार्थ: 'का'च्या ऐवजी क्षे (=क्+षे) वापरल्यास, किंवा 'प'च्या जागी पु, इ ऐवजी ओ इत्यादि" %imunicode['B'])
@@ -352,6 +362,8 @@ def details():
          का आणि क अर्धवट जुळतात म्हणून का ला मिळतो  %s. त ला देखिल मिळतो %s \
         कारण तो र् + त् मधील त शी जुळतो. शेवटच्या री ला मात्र त्याच र्त मधील र ला जुळूनही %s मिळतो \
         कारण र्त ला आधीच एक गुण बहाल झाला आहे (%s)." % (imunicode['G'], imunicode['B'], imunicode['Y'], imunicode['R'],imunicode['B'], imunicode['B'], imunicode['R'], imunicode['B']))
+    whitetext("खालील संकेतस्थळावर नव्या आणि येऊ घातलेल्या बदलांबद्दल माहिती मिळेल: ")
+    whitetext("[शब्दखूुळ](%s)" % articleurl)
 
 def reveal():
     '''
@@ -361,16 +373,17 @@ def reveal():
     t2put = whitetext('%s' % st.session_state['secret'])
     st.components.v1.html(t2put,width=50,height=10) # Height doesn't seem to do much
 
-def newplay():
-    '''
-    Because of the was the state works, this is non-trivial.
-    Introduces a race condition with the second empty
-    '''
-    whitetext("Not yet implemented.\nReload for now.")
-    # st.markdown("Another play")
-    # del st.session_state['secret']
-    # placeholder0.empty()
-    #mainfunc(wlen)
+# Not being used
+# def newplay():
+#     '''
+#     Because of the was the state works, this is non-trivial.
+#     Introduces a race condition with the second empty
+#     '''
+#     whitetext("Not yet implemented.\nReload for now.")
+#     # st.markdown("Another play")
+#     # del st.session_state['secret']
+#     # placeholder0.empty()
+#     #mainfunc(wlen)
 
 def getinput(secret,imunicode,onemore,depth):
     '''
@@ -499,6 +512,7 @@ def copyright():
     whitetext("Alpha-testers: [Abhijit, Anita, Jay, Anu] Mahabal ")
     whitetext("Beta-testers: Chaitali Parashare, Rohit Gawande")
     whitetext("We do not collect any personal or location data.")
+    whitetext("More details/features/updates: [शब्दखूुळ](%s)" % articleurl)
     whitetext("Contact: [email](mailto:mahabal.ashish@gmail.com)|[twitter](https://twitter.com/aschig)")
 
 # devnagari letter-set in unicode is assigned to the 0900-097F block (==2304-2431)
@@ -639,13 +653,13 @@ def mainfunc(n):
             #with modal.container():
             reveal()
 
-    col1, col2 = st.columns([10,4])
-    with col1:
-        if st.button('Copyright'):
-            copyright()
-    with col2:
-        if st.button('नवी खेळी'):
-            newplay()
+    # col1, col2 = st.columns([10,4])
+    # with col1:
+    if st.button('Copyright'):
+        copyright()
+    # with col2:
+    #     if st.button('नवी खेळी'):
+    #         newplay()
 
     # The following is for window focus
     components.html(
