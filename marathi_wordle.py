@@ -55,6 +55,7 @@ def def_value():
 # A few Globals
 articleurl = "https://ashishmahabal.github.io/%E0%A4%B6%E0%A4%AC%E0%A5%8D%E0%A4%A6%E0%A4%96%E0%A5%82%E0%A5%81%E0%A4%B3/"
 wlen = 3 # That is the length we currently use
+purl = 'https://www.shabdakhoool.games/'
 
 # Used for quick tests
 wordlist = ['मयत','मकडी','माकड','मगर','मंकड','कमळ','करीम','किस्त्रीम','मंगळ','मालती']
@@ -426,7 +427,7 @@ def getinput(secret,imunicode,onemore,depth):
                 modalstr = modalstr + ''.join([imunicode[k] for k in st.session_state['mylist'][i][1]]) + '\n'
             with col1: # शब्दखूुळ doesn't show properly everywhere
                 st.write("दवंडी पिटा")
-                st.code("शब्दखूुळ\n#%d %s/∞\n\n%s" % (st.session_state['nthword'],get_mdigits(len(st.session_state['mylist'])-1),modalstr))
+                st.code("शब्दखूुळ\n#%d %s/∞\n\n%s\n%s" % (st.session_state['nthword'],get_mdigits(len(st.session_state['mylist'])-1),modalstr,purl))
 
             myc2 = ''
 
